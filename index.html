@@ -105,7 +105,7 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
 }
 
 body{
-  background:linear-gradient(180deg,#eef3f8 0%,#f7f9fc 45%,#eef3f8 100%);
+  background:transparent;
   color:var(--text);
 }
 
@@ -498,7 +498,7 @@ body{
 .subject-backdrop{
   position:fixed;
   inset:0;
-  z-index:-2;
+  z-index:0;
   overflow:hidden;
   pointer-events:none;
   transition:background 700ms ease, opacity 500ms ease;
@@ -605,6 +605,30 @@ body{
   .watermark-layer{animation:none!important}
 }
 
+
+.wrap{
+  position:relative;
+  z-index:2;
+}
+.subject-backdrop::after{
+  background:linear-gradient(180deg,rgba(244,247,251,.62),rgba(247,249,252,.72));
+}
+.watermark-layer{
+  opacity:.18;
+}
+.watermark-b{
+  opacity:.10;
+}
+
+
+.subject-backdrop.theme-changing{
+  animation:themeFlash .42s ease;
+}
+@keyframes themeFlash{
+  0%{filter:saturate(.85);opacity:.72}
+  100%{filter:saturate(1);opacity:1}
+}
+
 </style>
 </head>
 <body>
@@ -702,7 +726,7 @@ body{
     <div class="quiz-top-actions">
       <button id="prev" class="secondary">← Anterior</button>
       <button id="showMap" class="secondary">Mapa</button>
-      <button id="exitExam" class="secondary hidden">Salir del examen</button>
+      <button id="exitExam" class="secondary">Salir al menú</button>
     </div>
     <div class="exam-timer" id="timerBox">
       <span>Tiempo</span>
@@ -866,7 +890,7 @@ function renderQuestion() {
   $("next").disabled=false;
   $("next").textContent=idx===session.length-1 ? "Terminar" : "Siguiente →";
   $("examHint").classList.toggle("hidden", currentMode!=="exam");
-  $("exitExam").classList.toggle("hidden", currentMode!=="exam");
+  $("exitExam").classList.remove("hidden");
 
   if(q.instructionOnly){
     const visual=document.createElement("div");
@@ -953,11 +977,15 @@ function nextQuestion() {
 
 
 function exitExam(){
-  const ok=confirm("¿Salir del examen? Las respuestas de esta sesión se perderán y el examen no contará en tus estadísticas.");
+  const isExam=currentMode==="exam";
+  const message=isExam
+    ? "¿Salir al menú principal? Las respuestas de este examen se perderán y esta sesión no contará en tus estadísticas."
+    : "¿Salir al menú principal? Finalizarás esta sesión. Los reactivos que ya respondiste conservarán sus estadísticas.";
+  const ok=confirm(message);
   if(!ok) return;
 
-  // En modo examen los intentos se guardan sólo al pulsar Terminar.
-  // Salir descarta por completo la sesión actual.
+  // En modo examen las respuestas sólo se guardan al terminar, así que salir las descarta.
+  // En estudio/repaso, los intentos ya respondidos conservan sus estadísticas.
   session=[];
   idx=0;
   score=0;
@@ -971,6 +999,7 @@ function exitExam(){
   $("setup").classList.remove("hidden");
   $("questionMap").classList.add("hidden");
   $("questionMap").innerHTML="";
+  applySubjectTheme();
 }
 
 function previousQuestion(){
@@ -1043,7 +1072,11 @@ function applySubjectTheme(){
     "Cómputo práctico":"subject-computo",
     "Álgebra":"subject-algebra"
   };
+
   backdrop.classList.add(map[subject] || "subject-all");
+  backdrop.classList.remove("theme-changing");
+  void backdrop.offsetWidth;
+  backdrop.classList.add("theme-changing");
 }
 
 $("start").onclick=startQuiz;
