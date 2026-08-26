@@ -465,9 +465,153 @@ footer{
   .quiz-topbar{top:6px}
 }
 
+
+.subjectCounts-subtle{
+  margin:14px 0 2px;
+  padding:10px 12px;
+  background:#f8fafc;
+  border:1px solid #e3e9ef;
+  border-radius:12px;
+  gap:6px;
+  opacity:.78;
+}
+.subjectCounts-subtle .pill{
+  background:transparent;
+  border:0;
+  padding:3px 6px;
+  color:#7b8796;
+  font-size:11px;
+  font-weight:600;
+}
+.subjectCounts-subtle .pill::before{
+  content:"•";
+  margin-right:6px;
+  color:#a7b1bd;
+}
+
+
+/* ===== Animated subject watermark backgrounds ===== */
+body{
+  position:relative;
+  overflow-x:hidden;
+}
+.subject-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:-2;
+  overflow:hidden;
+  pointer-events:none;
+  transition:background 700ms ease, opacity 500ms ease;
+}
+.subject-backdrop::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg,rgba(244,247,251,.80),rgba(247,249,252,.90));
+  z-index:3;
+}
+.watermark-layer{
+  position:absolute;
+  inset:-20%;
+  opacity:.10;
+  background-repeat:repeat;
+  transform:rotate(-10deg) scale(1.08);
+  will-change:transform,background-position;
+}
+.watermark-a{
+  animation:watermarkDriftA 34s linear infinite;
+}
+.watermark-b{
+  opacity:.055;
+  transform:rotate(8deg) scale(1.15);
+  animation:watermarkDriftB 46s linear infinite;
+}
+@keyframes watermarkDriftA{
+  from{background-position:0 0;transform:rotate(-10deg) translate3d(0,0,0) scale(1.08)}
+  to{background-position:260px 180px;transform:rotate(-10deg) translate3d(36px,24px,0) scale(1.08)}
+}
+@keyframes watermarkDriftB{
+  from{background-position:40px 20px;transform:rotate(8deg) translate3d(0,0,0) scale(1.15)}
+  to{background-position:-220px 140px;transform:rotate(8deg) translate3d(-28px,20px,0) scale(1.15)}
+}
+
+/* Default / examen mixto */
+.subject-all{
+  background:linear-gradient(135deg,#eef3f8,#f7f9fc);
+}
+.subject-all .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='160' viewBox='0 0 220 160'%3E%3Cg fill='none' stroke='%235f7185' stroke-width='2'%3E%3Ccircle cx='38' cy='38' r='18'/%3E%3Cpath d='M28 38h20M38 28v20M108 25l18 30H90zM166 28h28v28h-28zM22 112h38M41 93v38M99 92l28 28M127 92l-28 28M166 108h28'/%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-all .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'%3E%3Cg fill='%235f7185' font-family='Arial' font-size='18' font-weight='700' opacity='.8'%3E%3Ctext x='20' y='38'%3EIPE%3C/text%3E%3Ctext x='142' y='122'%3E2026%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Física */
+.subject-fisica{
+  background:linear-gradient(135deg,#edf4f8,#f8fbfd);
+}
+.subject-fisica .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='190' viewBox='0 0 260 190'%3E%3Cg fill='none' stroke='%233e6f8a' stroke-width='2'%3E%3Cpath d='M20 52c28-34 56-34 84 0s56 34 84 0 56-34 84 0'/%3E%3Ccircle cx='58' cy='124' r='28'/%3E%3Ccircle cx='58' cy='124' r='8'/%3E%3Cpath d='M112 106h48M136 82v48M196 102l18 44M214 102l-18 44'/%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-fisica .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Cg fill='%233e6f8a' font-family='Georgia' font-size='24' font-style='italic'%3E%3Ctext x='24' y='52'%3EF = ma%3C/text%3E%3Ctext x='146' y='132'%3EE = mc%C2%B2%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Probabilidad y Estadística */
+.subject-probabilidad{
+  background:linear-gradient(135deg,#f1f5f4,#f9fbfa);
+}
+.subject-probabilidad .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='190' viewBox='0 0 260 190'%3E%3Cg fill='none' stroke='%234f7968' stroke-width='2'%3E%3Cpath d='M22 142h44V92H22zM82 142h44V62H82zM142 142h44V108h-44zM202 142h36V42h-36z'/%3E%3Cpath d='M24 38c34 0 34 38 68 38s34-38 68-38 34 38 68 38'/%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-probabilidad .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='180' viewBox='0 0 260 180'%3E%3Cg fill='%234f7968' font-family='Georgia' font-size='23'%3E%3Ctext x='20' y='52'%3EP(A)%3C/text%3E%3Ctext x='150' y='124'%3E%CE%A3x%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Electrónica Digital */
+.subject-electronica{
+  background:linear-gradient(135deg,#eef1f6,#f8f9fc);
+}
+.subject-electronica .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='190' viewBox='0 0 280 190'%3E%3Cg fill='none' stroke='%23515f83' stroke-width='2'%3E%3Cpath d='M22 55h30v-20h36v40h36v-40h36v40h36v-40h36v40h28'/%3E%3Crect x='32' y='116' width='54' height='38' rx='5'/%3E%3Cpath d='M86 124h22M86 144h22M108 134h28M138 116v38M180 112h56M180 132h56M180 152h56'/%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-electronica .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Cg fill='%23515f83' font-family='monospace' font-size='22' font-weight='700'%3E%3Ctext x='20' y='54'%3E101101%3C/text%3E%3Ctext x='156' y='136'%3EAND%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Cómputo */
+.subject-computo{
+  background:linear-gradient(135deg,#f0f4f8,#fafbfd);
+}
+.subject-computo .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='190' viewBox='0 0 280 190'%3E%3Cg fill='none' stroke='%234f6f8f' stroke-width='2'%3E%3Crect x='28' y='28' width='94' height='62' rx='5'/%3E%3Cpath d='M52 104h46M75 90v14M170 34h58v74h-58zM182 52h34M182 68h34M182 84h26M36 140h196M62 126v28M102 118v36M142 132v22M182 112v42'/%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-computo .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='190' viewBox='0 0 280 190'%3E%3Cg fill='%234f6f8f' font-family='Arial' font-size='20' font-weight='700'%3E%3Ctext x='22' y='54'%3EWORD%3C/text%3E%3Ctext x='168' y='132'%3EXLS%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+
+/* Álgebra */
+.subject-algebra{
+  background:linear-gradient(135deg,#f5f2f7,#fbfafc);
+}
+.subject-algebra .watermark-a{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='190' viewBox='0 0 280 190'%3E%3Cg fill='%236c587a' font-family='Georgia' font-size='24' font-style='italic'%3E%3Ctext x='22' y='50'%3Ex%C2%B2 + bx + c%3C/text%3E%3Ctext x='144' y='126'%3E(a+b)%C2%B2%3C/text%3E%3Ctext x='36' y='166'%3E%E2%88%9Ax%3C/text%3E%3C/g%3E%3C/svg%3E");
+}
+.subject-algebra .watermark-b{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='280' height='200' viewBox='0 0 280 200'%3E%3Cg fill='none' stroke='%236c587a' stroke-width='2'%3E%3Cpath d='M26 140h90M72 84v92M156 136c18-58 36-58 54 0s36 58 54 0'/%3E%3C/g%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce){
+  .watermark-layer{animation:none!important}
+}
+
 </style>
 </head>
 <body>
+<div id="subjectBackdrop" class="subject-backdrop subject-all" aria-hidden="true">
+  <div class="watermark-layer watermark-a"></div>
+  <div class="watermark-layer watermark-b"></div>
+</div>
 <div class="wrap">
 <header>
   <div>
@@ -488,14 +632,7 @@ footer{
     </div>
   </div>
 
-  <div class="subjectCounts">
-    <span class="pill">Física: 119 reactivos</span>
-    <span class="pill">Probabilidad y Estadística: 33 reactivos</span>
-    <span class="pill">Electrónica Digital: 114 reactivos</span>
-    <span class="pill">Cómputo práctico: 19 instrucciones</span>
-    <span class="pill">Álgebra: 53 reactivos</span>
-    <span class="pill">Total disponible: 338</span>
-  </div>
+  
 
   <div class="setup-section">
     <div class="section-title">Configuración</div>
@@ -533,6 +670,15 @@ footer{
         </select>
       </label>
     </div>
+  </div>
+
+<div class="subjectCounts subjectCounts-subtle">
+    <span class="pill">Física: 119 reactivos</span>
+    <span class="pill">Probabilidad y Estadística: 33 reactivos</span>
+    <span class="pill">Electrónica Digital: 114 reactivos</span>
+    <span class="pill">Cómputo práctico: 19 instrucciones</span>
+    <span class="pill">Álgebra: 53 reactivos</span>
+    <span class="pill">Total disponible: 338</span>
   </div>
 
   <div class="setup-section">
@@ -880,7 +1026,29 @@ function finish() {
     $("review").appendChild(d);
   });
 }
+
+function applySubjectTheme(){
+  const subject=$("subject").value;
+  const backdrop=$("subjectBackdrop");
+  if(!backdrop) return;
+
+  const classes=["subject-all","subject-fisica","subject-probabilidad","subject-electronica","subject-computo","subject-algebra"];
+  backdrop.classList.remove(...classes);
+
+  const map={
+    "all":"subject-all",
+    "Física":"subject-fisica",
+    "Probabilidad y Estadística":"subject-probabilidad",
+    "Electrónica Digital":"subject-electronica",
+    "Cómputo práctico":"subject-computo",
+    "Álgebra":"subject-algebra"
+  };
+  backdrop.classList.add(map[subject] || "subject-all");
+}
+
 $("start").onclick=startQuiz;
+$("subject").addEventListener("change",applySubjectTheme);
+applySubjectTheme();
 
 $("next").onclick=nextQuestion;
 $("prev").onclick=previousQuestion;
