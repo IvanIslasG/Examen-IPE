@@ -629,9 +629,102 @@ body{
   100%{filter:saturate(1);opacity:1}
 }
 
+
+/* ===== Subject accent themes ===== */
+body.theme-all{
+  --accent:#1f4e79;
+  --accent-2:#2f6ea3;
+  --subject-soft:#eef3f8;
+  --subject-line:#cfdbe7;
+  --subject-text:#244a6a;
+}
+body.theme-fisica{
+  --accent:#2d6f8e;
+  --accent-2:#4b89a4;
+  --subject-soft:#eaf4f8;
+  --subject-line:#bfd8e3;
+  --subject-text:#24566d;
+}
+body.theme-probabilidad{
+  --accent:#3f7c66;
+  --accent-2:#5d9982;
+  --subject-soft:#edf6f2;
+  --subject-line:#c7ded3;
+  --subject-text:#315f50;
+}
+body.theme-electronica{
+  --accent:#4d5f8a;
+  --accent-2:#6a7cac;
+  --subject-soft:#eff1f8;
+  --subject-line:#d0d5e6;
+  --subject-text:#3d4d71;
+}
+body.theme-computo{
+  --accent:#3f6f9a;
+  --accent-2:#5f8eb7;
+  --subject-soft:#eef4f9;
+  --subject-line:#cbdce9;
+  --subject-text:#325a7f;
+}
+body.theme-algebra{
+  --accent:#735c86;
+  --accent-2:#8d74a1;
+  --subject-soft:#f4eff7;
+  --subject-line:#ddd0e5;
+  --subject-text:#5c496c;
+}
+
+/* Apply subject accent across key interface elements */
+button.primary{
+  background:var(--accent)!important;
+  border-color:var(--accent)!important;
+}
+button.primary:hover:not(:disabled){
+  background:var(--accent-2)!important;
+  border-color:var(--accent-2)!important;
+}
+.progress>div{
+  background:linear-gradient(90deg,var(--accent),var(--accent-2))!important;
+}
+.category{
+  background:var(--subject-soft)!important;
+  border-color:var(--subject-line)!important;
+  color:var(--subject-text)!important;
+}
+.qjump.current{
+  outline-color:var(--accent)!important;
+  background:var(--subject-soft)!important;
+}
+.exam-timer b,
+.grade,
+h1,
+.intro-subject{
+  color:var(--accent)!important;
+}
+.intro-pulse{
+  background:var(--accent)!important;
+}
+.quiz-topbar{
+  box-shadow:0 8px 22px color-mix(in srgb, var(--accent) 10%, transparent);
+}
+.start-button{
+  box-shadow:0 8px 20px color-mix(in srgb, var(--accent) 16%, transparent);
+}
+
+/* Slightly stronger but still subtle watermark visibility */
+.watermark-layer{
+  opacity:.24!important;
+}
+.watermark-b{
+  opacity:.14!important;
+}
+.subject-backdrop::after{
+  background:linear-gradient(180deg,rgba(244,247,251,.50),rgba(247,249,252,.62))!important;
+}
+
 </style>
 </head>
-<body>
+<body class="theme-all">
 <div id="subjectBackdrop" class="subject-backdrop subject-all" aria-hidden="true">
   <div class="watermark-layer watermark-a"></div>
   <div class="watermark-layer watermark-b"></div>
@@ -1061,10 +1154,13 @@ function applySubjectTheme(){
   const backdrop=$("subjectBackdrop");
   if(!backdrop) return;
 
-  const classes=["subject-all","subject-fisica","subject-probabilidad","subject-electronica","subject-computo","subject-algebra"];
-  backdrop.classList.remove(...classes);
+  const backdropClasses=["subject-all","subject-fisica","subject-probabilidad","subject-electronica","subject-computo","subject-algebra"];
+  backdrop.classList.remove(...backdropClasses);
 
-  const map={
+  const bodyClasses=["theme-all","theme-fisica","theme-probabilidad","theme-electronica","theme-computo","theme-algebra"];
+  document.body.classList.remove(...bodyClasses);
+
+  const backdropMap={
     "all":"subject-all",
     "Física":"subject-fisica",
     "Probabilidad y Estadística":"subject-probabilidad",
@@ -1072,8 +1168,18 @@ function applySubjectTheme(){
     "Cómputo práctico":"subject-computo",
     "Álgebra":"subject-algebra"
   };
+  const bodyMap={
+    "all":"theme-all",
+    "Física":"theme-fisica",
+    "Probabilidad y Estadística":"theme-probabilidad",
+    "Electrónica Digital":"theme-electronica",
+    "Cómputo práctico":"theme-computo",
+    "Álgebra":"theme-algebra"
+  };
 
-  backdrop.classList.add(map[subject] || "subject-all");
+  backdrop.classList.add(backdropMap[subject] || "subject-all");
+  document.body.classList.add(bodyMap[subject] || "theme-all");
+
   backdrop.classList.remove("theme-changing");
   void backdrop.offsetWidth;
   backdrop.classList.add("theme-changing");
