@@ -87,6 +87,384 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
   .exam-timer{width:100%;justify-content:center}
 }
 
+
+/* ===== Executive Minimal Theme ===== */
+:root{
+  --bg:#f4f7fb;
+  --card:#ffffff;
+  --card2:#f8fafc;
+  --text:#172033;
+  --muted:#6b778c;
+  --accent:#1f4e79;
+  --accent-2:#2f6ea3;
+  --ok:#2f7d5a;
+  --bad:#b94a48;
+  --warn:#9a6b18;
+  --line:#d9e1ea;
+  --shadow:0 10px 28px rgba(23,32,51,.08);
+}
+
+body{
+  background:linear-gradient(180deg,#eef3f8 0%,#f7f9fc 45%,#eef3f8 100%);
+  color:var(--text);
+}
+
+.wrap{
+  max-width:1040px;
+  padding:28px 22px 40px;
+}
+
+header{
+  margin-bottom:22px;
+  padding:0 2px;
+}
+
+h1{
+  font-size:clamp(28px,4vw,42px);
+  letter-spacing:-0.035em;
+  color:#10243b;
+  font-weight:800;
+}
+
+.sub{
+  color:var(--muted);
+  font-size:14px;
+}
+
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:18px;
+  padding:24px;
+  box-shadow:var(--shadow);
+}
+
+.controls{
+  gap:14px;
+  margin:18px 0;
+}
+
+label{
+  color:#556176;
+  font-weight:650;
+  font-size:12px;
+  letter-spacing:.03em;
+  text-transform:uppercase;
+}
+
+button,select{
+  border-radius:10px;
+  border:1px solid #cfd8e3;
+  background:#fff;
+  color:var(--text);
+  padding:11px 13px;
+  font-size:14px;
+  box-shadow:none;
+}
+
+select:focus,button:focus{
+  outline:2px solid rgba(31,78,121,.18);
+  outline-offset:1px;
+}
+
+button{
+  font-weight:700;
+  transition:background .15s ease,border-color .15s ease,transform .08s ease;
+}
+button:hover:not(:disabled){
+  border-color:#9fb3c8;
+  background:#f6f9fc;
+}
+button:active:not(:disabled){
+  transform:translateY(1px);
+}
+button.primary{
+  background:var(--accent);
+  color:#fff;
+  border-color:var(--accent);
+}
+button.primary:hover:not(:disabled){
+  background:#183f64;
+  border-color:#183f64;
+}
+button.secondary{
+  background:#f7f9fc;
+  color:#2b3f55;
+  border-color:#d6dee8;
+}
+
+.statbar{
+  gap:12px;
+  margin:18px 0;
+}
+.stat{
+  background:#fbfcfe;
+  border:1px solid #dfe6ee;
+  border-radius:12px;
+  padding:15px 12px;
+}
+.stat b{
+  color:#153b63;
+  font-size:22px;
+}
+.stat span{
+  color:#7a8699;
+}
+
+.subjectCounts{
+  gap:8px;
+  margin:12px 0 4px;
+}
+.pill{
+  background:#eef3f8;
+  border:1px solid #d6e0ea;
+  color:#44566b;
+  border-radius:999px;
+  padding:7px 10px;
+}
+
+.quiz-topbar{
+  background:#f8fafc;
+  border:1px solid #dde5ee;
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:18px;
+}
+
+.quiz-top-actions button{
+  background:#fff;
+}
+
+.exam-timer{
+  background:#ffffff;
+  border:1px solid #d6dee8;
+  border-radius:10px;
+  padding:9px 13px;
+}
+.exam-timer span{
+  color:#7b8798;
+}
+.exam-timer b{
+  color:#173c63;
+}
+
+.qnum{
+  color:#54708d;
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+.category{
+  background:#edf3f8;
+  color:#35597c;
+  border:1px solid #d6e2ec;
+  padding:5px 9px;
+}
+
+.progress{
+  background:#e7edf4;
+  height:7px;
+  margin:14px 0 22px;
+}
+.progress>div{
+  background:linear-gradient(90deg,#315f89,#4c7fad);
+}
+
+.question{
+  color:#14233a;
+  font-size:clamp(21px,3vw,30px);
+  line-height:1.35;
+  margin:14px 0 20px;
+  font-weight:720;
+  letter-spacing:-.015em;
+}
+
+.options{
+  gap:12px;
+}
+.option{
+  background:#fff;
+  border:1px solid #d9e2ec;
+  color:#24364a;
+  padding:15px 16px;
+  border-radius:12px;
+  font-weight:650;
+  box-shadow:0 2px 8px rgba(23,32,51,.03);
+}
+.option:hover{
+  border-color:#9fb5c9;
+  background:#f9fbfd;
+}
+.option.correct{
+  border-color:#75a58e;
+  background:#eef7f2;
+  color:#225f45;
+}
+.option.wrong{
+  border-color:#cf8e8c;
+  background:#fcf1f1;
+  color:#8f3533;
+}
+
+.feedback{
+  background:#f8fafc;
+  border:1px solid #dbe3ec;
+  color:#32465b;
+  border-radius:12px;
+  padding:15px;
+}
+.feedback.ok{
+  border-color:#b8d8c8;
+  background:#f1f8f4;
+}
+.feedback.bad{
+  border-color:#e5c0bf;
+  background:#fdf4f4;
+}
+.note{
+  color:#7a5a1c;
+}
+
+.bottom-actions{
+  border-top:1px solid #e5ebf1;
+  padding-top:16px;
+  margin-top:20px;
+}
+
+.question-map{
+  background:#f8fafc;
+  border:1px solid #dfe6ee;
+  border-radius:12px;
+  padding:12px;
+}
+.qjump{
+  background:#fff;
+  border:1px solid #d6dee8;
+  color:#41566d;
+  border-radius:8px;
+}
+.qjump.current{
+  outline:2px solid #315f89;
+  background:#eef4fa;
+}
+.qjump.answered{
+  background:#edf6f1;
+  border-color:#b8d4c5;
+  color:#2e6d50;
+}
+.qjump.unanswered{
+  background:#fff;
+}
+
+.review-item{
+  background:#fbfcfe;
+  border:1px solid #dfe6ee;
+  border-radius:12px;
+  padding:14px;
+}
+
+.grade{
+  color:#173c63;
+}
+
+.computo-visual{
+  border:1px solid #d7e0e9;
+  border-radius:14px;
+  box-shadow:0 6px 18px rgba(23,32,51,.05);
+}
+.computo-visual-label{
+  background:#173c63;
+  color:#fff;
+  letter-spacing:.04em;
+}
+
+footer{
+  color:#8a95a6;
+  margin-top:20px;
+}
+
+@media(max-width:620px){
+  .wrap{padding:16px 10px 28px}
+  .card{padding:17px;border-radius:14px}
+  .quiz-topbar{padding:10px}
+  .question{font-size:22px}
+  .option{padding:14px}
+}
+
+
+/* ===== UX refinement ===== */
+.setup-card{padding:28px}
+.setup-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:10px}
+.eyebrow{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#6c7c8f;font-weight:800;margin-bottom:7px}
+.setup-heading h2{margin:0;font-size:28px;color:#14243a;letter-spacing:-.02em}
+.setup-intro{margin:8px 0 0;color:#6c7889;font-size:14px}
+.setup-section{margin-top:24px;padding-top:20px;border-top:1px solid #e4eaf0}
+.section-title{font-size:13px;font-weight:800;color:#30465e;margin-bottom:12px;letter-spacing:.02em}
+.start-area{margin-top:24px;padding-top:20px;border-top:1px solid #e4eaf0;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.start-area .small{max-width:650px;margin:0;line-height:1.5}
+.start-button{width:auto;min-width:180px;padding:13px 22px;font-size:15px}
+.controls label{display:flex;flex-direction:column;gap:6px}
+.controls select{margin-top:0}
+.stat{min-height:82px;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.quiz-topbar{position:sticky;top:10px;z-index:20;backdrop-filter:blur(10px);background:rgba(248,250,252,.94)}
+.question-map{max-height:180px;overflow:auto}
+.bottom-actions{position:sticky;bottom:8px;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);padding:14px 0 4px;z-index:15}
+#sessionScore{font-weight:650;color:#607085}
+
+.exam-intro-overlay{
+  position:fixed;inset:0;z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(239,244,249,.92);
+  backdrop-filter:blur(12px);
+  opacity:1;
+  transition:opacity .7s ease;
+}
+.exam-intro-overlay.hidden{display:none}
+.exam-intro-overlay.fade-out{opacity:0;pointer-events:none}
+.exam-intro-card{
+  min-width:min(520px,calc(100vw - 40px));
+  max-width:620px;
+  padding:34px 38px;
+  background:#fff;
+  border:1px solid #d9e1ea;
+  border-radius:20px;
+  box-shadow:0 24px 70px rgba(20,36,58,.14);
+  text-align:center;
+  animation:introCardIn .45s ease both;
+}
+.intro-kicker{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:#758498;font-weight:800;margin-bottom:12px;
+}
+.intro-subject{
+  font-size:clamp(28px,5vw,42px);
+  font-weight:820;color:#173c63;letter-spacing:-.035em;line-height:1.08;
+}
+.intro-count{
+  margin-top:12px;font-size:16px;color:#5d6e81;font-weight:650;
+}
+.intro-pulse{
+  width:42px;height:4px;border-radius:999px;background:#315f89;
+  margin:24px auto 0;
+  animation:introPulse 1.1s ease-in-out infinite;
+}
+@keyframes introCardIn{
+  from{opacity:0;transform:translateY(10px) scale(.985)}
+  to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes introPulse{
+  0%,100%{opacity:.3;transform:scaleX(.75)}
+  50%{opacity:1;transform:scaleX(1.25)}
+}
+@media(max-width:620px){
+  .setup-card{padding:18px}
+  .start-area{align-items:stretch}
+  .start-button{width:100%}
+  .exam-intro-card{padding:28px 22px}
+  .quiz-topbar{top:6px}
+}
+
 </style>
 </head>
 <body>
@@ -101,8 +479,15 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
   </div>
 </header>
 
-<section id="setup" class="card">
-  <h2>Configura tu sesión</h2>
+<section id="setup" class="card setup-card">
+  <div class="setup-heading">
+    <div>
+      <div class="eyebrow">Preparación de sesión</div>
+      <h2>Configura tu examen</h2>
+      <p class="setup-intro">Elige la materia, el modo y la cantidad de reactivos antes de comenzar.</p>
+    </div>
+  </div>
+
   <div class="subjectCounts">
     <span class="pill">Física: 119 reactivos</span>
     <span class="pill">Probabilidad y Estadística: 33 reactivos</span>
@@ -111,49 +496,59 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
     <span class="pill">Álgebra: 53 reactivos</span>
     <span class="pill">Total disponible: 338</span>
   </div>
-  <div class="controls">
-    <label>Materia
-      <select id="subject">
-        <option value="all">Examen mixto (338)</option>
-        <option value="Física">Física (119)</option>
-        <option value="Probabilidad y Estadística">Probabilidad y Estadística (33)</option>
-        <option value="Electrónica Digital">Electrónica Digital (114)</option>
-        <option value="Cómputo práctico">Cómputo práctico (19)</option>
-        <option value="Álgebra">Álgebra (53)</option>
-      </select>
-    </label>
-    <label>Modo
-      <select id="mode">
-        <option value="study">Estudio — respuesta inmediata</option>
-        <option value="exam">Examen — resultado al final</option>
-        <option value="wrong">Repasar falladas</option>
-      </select>
-    </label>
-    <label>Número de preguntas
-      <select id="count">
-        <option value="10">10</option>
-        <option value="20">20</option>
-        <option value="40">40</option>
-        <option value="80">80</option>
-        <option value="all" selected>Todas las disponibles</option>
-      </select>
-    </label>
-    <label>Orden
-      <select id="order">
-        <option value="shuffle" selected>Aleatorio</option>
-        <option value="normal">Como en las guías</option>
-      </select>
-    </label>
+
+  <div class="setup-section">
+    <div class="section-title">Configuración</div>
+    <div class="controls">
+      <label>Materia
+        <select id="subject">
+          <option value="all">Examen mixto</option>
+          <option value="Física">Física</option>
+          <option value="Probabilidad y Estadística">Probabilidad y Estadística</option>
+          <option value="Electrónica Digital">Electrónica Digital</option>
+          <option value="Cómputo práctico">Cómputo práctico</option>
+          <option value="Álgebra">Álgebra</option>
+        </select>
+      </label>
+      <label>Modo
+        <select id="mode">
+          <option value="study">Estudio — respuesta inmediata</option>
+          <option value="exam">Examen — resultado al final</option>
+          <option value="wrong">Repasar falladas</option>
+        </select>
+      </label>
+      <label>Número de preguntas
+        <select id="count">
+          <option value="10">10</option>
+          <option value="20">20</option>
+          <option value="40">40</option>
+          <option value="80">80</option>
+          <option value="all" selected>Todas las disponibles</option>
+        </select>
+      </label>
+      <label>Orden
+        <select id="order">
+          <option value="shuffle" selected>Aleatorio</option>
+          <option value="normal">Como en las guías</option>
+        </select>
+      </label>
+    </div>
   </div>
 
-  <div class="statbar">
-    <div class="stat"><b id="lifetimeDone">0</b><span>Respondidas</span></div>
-    <div class="stat"><b id="lifetimeCorrect">0</b><span>Correctas</span></div>
-    <div class="stat"><b id="lifetimeRate">0%</b><span>Precisión</span></div>
-    <div class="stat"><b id="wrongCount">0</b><span>Por repasar</span></div>
+  <div class="setup-section">
+    <div class="section-title">Tu progreso</div>
+    <div class="statbar">
+      <div class="stat"><b id="lifetimeDone">0</b><span>Respondidas</span></div>
+      <div class="stat"><b id="lifetimeCorrect">0</b><span>Correctas</span></div>
+      <div class="stat"><b id="lifetimeRate">0%</b><span>Precisión</span></div>
+      <div class="stat"><b id="wrongCount">0</b><span>Por repasar</span></div>
+    </div>
   </div>
-  <button id="start" class="primary">Comenzar</button>
-  <p class="small">El simulador califica usando exactamente las respuestas indicadas por las guías. Modo difícil: los distractores usan valores cercanos y cambios mínimos de concepto. En problemas numéricos, las opciones muestran sólo resultados finales. Además, los reactivos de la guía con errores físicos claros fueron corregidos y se identifican con una nota.</p>
+
+  <div class="start-area">
+    <button id="start" class="primary start-button">Comenzar</button>
+    <p class="small">Las respuestas se califican con el banco revisado del simulador. En los ejercicios numéricos, las opciones muestran sólo el resultado final.</p>
+  </div>
 </section>
 
 <section id="quiz" class="card hidden">
@@ -197,6 +592,15 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
 </section>
 
 <footer>Tu progreso se guarda únicamente en el navegador en el que abras este archivo.</footer>
+</div>
+
+<div id="examIntroOverlay" class="exam-intro-overlay hidden" aria-live="polite">
+  <div class="exam-intro-card">
+    <div class="intro-kicker">Sesión preparada</div>
+    <div id="introSubject" class="intro-subject"></div>
+    <div id="introCount" class="intro-count"></div>
+    <div class="intro-pulse"></div>
+  </div>
 </div>
 
 <script>
@@ -277,11 +681,30 @@ function resetTimer(){
 function startQuiz() {
   const p=poolForSetup(); if(!p) return;
   session=p; idx=0; score=0; selectedAnswers=[]; answersByKey={};
+
+  const subjectValue=$("subject").value;
+  const subjectLabel=subjectValue==="all" ? "Examen mixto" : subjectValue;
+  const countLabel=session.length===1 ? "1 reactivo" :
+    (subjectValue==="Cómputo práctico" ? `${session.length} instrucciones` : `${session.length} reactivos`);
+
+  $("introSubject").textContent=subjectLabel;
+  $("introCount").textContent=countLabel;
+  const overlay=$("examIntroOverlay");
+  overlay.classList.remove("hidden","fade-out");
+
   $("setup").classList.add("hidden");
   $("result").classList.add("hidden");
-  $("quiz").classList.remove("hidden");
-  startTimer();
-  renderQuestion();
+
+  setTimeout(()=>{
+    overlay.classList.add("fade-out");
+    setTimeout(()=>{
+      overlay.classList.add("hidden");
+      overlay.classList.remove("fade-out");
+      $("quiz").classList.remove("hidden");
+      startTimer();
+      renderQuestion();
+    },650);
+  },1800);
 }
 function renderQuestion() {
   const q=session[idx];
