@@ -146,6 +146,7 @@ footer{color:var(--muted);font-size:12px;margin-top:14px;text-align:center}
 <div class="navbar-questions">
   <button id="prev" class="secondary">← Anterior</button>
   <button id="showMap" class="secondary">Mapa de preguntas</button>
+  <button id="exitExam" class="secondary hidden">Salir del examen</button>
   
 </div>
 <div id="questionMap" class="question-map hidden"></div>
@@ -237,6 +238,7 @@ function renderQuestion() {
   $("next").disabled=false;
   $("next").textContent=idx===session.length-1 ? "Terminar" : "Siguiente →";
   $("examHint").classList.toggle("hidden", currentMode!=="exam");
+  $("exitExam").classList.toggle("hidden", currentMode!=="exam");
 
   if(q.instructionOnly){
     const visual=document.createElement("div");
@@ -321,6 +323,27 @@ function nextQuestion() {
   else finish();
 }
 
+
+function exitExam(){
+  const ok=confirm("¿Salir del examen? Las respuestas de esta sesión se perderán y el examen no contará en tus estadísticas.");
+  if(!ok) return;
+
+  // En modo examen los intentos se guardan sólo al pulsar Terminar.
+  // Salir descarta por completo la sesión actual.
+  session=[];
+  idx=0;
+  score=0;
+  answered=false;
+  selectedAnswers=[];
+  answersByKey={};
+
+  $("quiz").classList.add("hidden");
+  $("result").classList.add("hidden");
+  $("setup").classList.remove("hidden");
+  $("questionMap").classList.add("hidden");
+  $("questionMap").innerHTML="";
+}
+
 function previousQuestion(){
   if(idx>0){ idx--; renderQuestion(); }
 }
@@ -376,6 +399,7 @@ $("start").onclick=startQuiz;
 $("next").onclick=nextQuestion;
 $("prev").onclick=previousQuestion;
 $("showMap").onclick=()=>{$("questionMap").classList.toggle("hidden");renderQuestionMap();};
+$("exitExam").onclick=exitExam;
 
 
 $("again").onclick=()=>{$("result").classList.add("hidden");$("setup").classList.remove("hidden");loadStats();};
