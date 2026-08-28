@@ -1112,22 +1112,13 @@ body.theme-ortografia{--accent:#8a4b58;--accent-2:#a96874;--subject-soft:#f8eff1
       <label>Orden
         <select id="order">
           <option value="shuffle" selected>Aleatorio</option>
-          <option value="normal">Como en las guías</option>
+          <option value="normal">Orden original</option>
         </select>
       </label>
     </div>
   </div>
 
-<div class="subjectCounts subjectCounts-subtle">
-<span class="pill">Física: 263 reactivos</span>
-<span class="pill">Probabilidad y Estadística: 33 reactivos</span>
-<span class="pill">Electrónica Digital: 114 reactivos</span>
-<span class="pill">Cómputo práctico: 19 instrucciones</span>
-<span class="pill">Cómputo Teórico: 156 reactivos</span>
-<span class="pill">Álgebra: 53 reactivos</span>
-<span class="pill">Ortografía: 49 reactivos</span>
-<span class="pill">Total disponible: 543</span>
-</div>
+<div id="subjectCounts" class="subjectCounts subjectCounts-subtle"></div>
 
   <div class="setup-section">
     <div class="section-title">Tu progreso</div>
@@ -1205,6 +1196,32 @@ let session=[], idx=0, score=0, answered=false, selectedAnswers=[], currentMode=
 const $ = id => document.getElementById(id);
 const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(x=>x[1]);
 
+
+function renderSubjectCounts() {
+  const host = document.getElementById("subjectCounts");
+  if (!host) return;
+
+  const active = QUESTIONS.filter(q => !q.excludedFromExam);
+  const orderedSubjects = [
+    "Física",
+    "Probabilidad y Estadística",
+    "Electrónica Digital",
+    "Cómputo práctico",
+    "Cómputo Teórico",
+    "Álgebra",
+    "Ortografía"
+  ];
+
+  const labels = orderedSubjects.map(subject => {
+    const count = active.filter(q => q.subject === subject).length;
+    const noun = subject === "Cómputo práctico" ? "instrucciones" : "reactivos";
+    return `<span class="pill">${subject}: ${count} ${noun}</span>`;
+  });
+
+  labels.push(`<span class="pill">Total disponible: ${active.length}</span>`);
+  host.innerHTML = labels.join(" ");
+}
+
 function getStats() {
   return JSON.parse(localStorage.getItem("ipe2026Stats") || '{"done":0,"correct":0,"wrongKeys":[]}');
 }
@@ -1224,6 +1241,7 @@ function saveAttempt(key, correct) {
   else if(!s.wrongKeys.includes(key)) s.wrongKeys.push(key);
   localStorage.setItem("ipe2026Stats",JSON.stringify(s));
   loadStats();
+renderSubjectCounts();
 }
 function poolForSetup() {
   const subj=$("subject").value;
