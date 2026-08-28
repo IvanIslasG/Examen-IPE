@@ -1241,7 +1241,6 @@ function saveAttempt(key, correct) {
   else if(!s.wrongKeys.includes(key)) s.wrongKeys.push(key);
   localStorage.setItem("ipe2026Stats",JSON.stringify(s));
   loadStats();
-renderSubjectCounts();
 }
 function poolForSetup() {
   const subj=$("subject").value;
@@ -1585,10 +1584,11 @@ $("showMap").onclick=()=>{$("questionMap").classList.toggle("hidden");renderQues
 $("exitExam").onclick=exitExam;
 
 
-$("again").onclick=()=>{resetTimer();$("result").classList.add("hidden");$("setup").classList.remove("hidden");loadStats();};
+$("again").onclick=()=>{resetTimer();$("result").classList.add("hidden");$("setup").classList.remove("hidden");loadStats();renderSubjectCounts();};
 $("retryWrong").onclick=()=>{$("mode").value="wrong";$("count").value="all";$("result").classList.add("hidden");$("setup").classList.remove("hidden");startQuiz();};
 $("resetStats").onclick=()=>{if(confirm("¿Borrar todas las estadísticas guardadas?")){localStorage.removeItem("ipe2026Stats");loadStats();}};
 loadStats();
+renderSubjectCounts();
 </script>
 </body>
 </html>
